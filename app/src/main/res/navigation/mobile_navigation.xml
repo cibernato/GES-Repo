@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_mapa">
+
+    <fragment
+        android:id="@+id/navigation_perfil"
+        android:name="com.example.safecare.ui.fragments.PerfilFragment"
+        android:label="Perfil"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_alerta"
+        android:name="com.example.safecare.ui.fragments.AlertaFragment"
+        android:label="Mapa"
+        tools:layout="@layout/fragment_dashboard" />
+
+    <fragment
+        android:id="@+id/navigation_mapa"
+        android:name="com.example.safecare.ui.fragments.MapaFragment"
+        android:label="Lista"
+        tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/navigation_listaFragment"
+        android:name="com.example.safecare.ui.fragments.ListaFragment"
+        android:label="Alerta"
+        tools:layout="@layout/fragment_lista" />
+</navigation>

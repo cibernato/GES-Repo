@@ -1,4 +1,4 @@
-package com.example.safecare
+package com.example.safecare.services
 
 import android.Manifest
 import android.app.Service
@@ -19,6 +19,7 @@ import android.telephony.SmsManager
 import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import com.example.safecare.StaticObjects
 import java.util.*
 
 class IService2 : Service(), SensorEventListener {

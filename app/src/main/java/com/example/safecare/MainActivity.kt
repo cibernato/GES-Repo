@@ -1,3 +1,4 @@
+package com.example.safecare/*
 package com.example.safecare
 
 import androidx.appcompat.app.AppCompatActivity
@@ -8,4 +9,4 @@ class MainActivity2 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
-}
+}*/

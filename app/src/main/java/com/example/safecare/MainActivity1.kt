@@ -1,3 +1,4 @@
+package com.example.safecare/*
 package com.example.safecare
 
 import android.Manifest
@@ -9,6 +10,7 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import com.example.safecare.services.IService2
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -76,4 +78,4 @@ class MainActivity : AppCompatActivity() {
     companion object {
         private const val MY_PERMISSIONS_REQUEST_FINE = 2
     }
-}
+}*/
