@@ -14,17 +14,17 @@
     <fragment
         android:id="@+id/navigation_alerta"
         android:name="com.example.safecare.ui.fragments.AlertaFragment"
-        android:label="Mapa"
+        android:label="Alerta"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_mapa"
         android:name="com.example.safecare.ui.fragments.MapaFragment"
-        android:label="Lista"
+        android:label="Mapa"
         tools:layout="@layout/fragment_notifications" />
     <fragment
         android:id="@+id/navigation_listaFragment"
         android:name="com.example.safecare.ui.fragments.ListaFragment"
-        android:label="Alerta"
+        android:label="Lista"
         tools:layout="@layout/fragment_lista" />
 </navigation>

@@ -18,7 +18,7 @@ class SupervisadoAdapter(
     inner class SupervisadoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun setData(imagen: String, position: Int) {
             itemView.nombre.text = imagen
-            itemView.age.text = Random.nextInt(0, 90).toString()
+//            itemView.age.text = Random.nextInt(0, 90).toString()
             itemView.ubication.text = "${Random.nextDouble(17.0,18.0).toString().substring(0,7)}, ${Random.nextDouble(17.0,18.0).toString().substring(0,7)}"
         }
     }

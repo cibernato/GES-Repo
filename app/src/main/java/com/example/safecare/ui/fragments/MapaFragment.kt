@@ -1,11 +1,16 @@
 package com.example.safecare.ui.fragments
 
+import android.Manifest
+import android.annotation.SuppressLint
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.example.safecare.R
+import com.example.safecare.StaticObjects
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.GoogleMap
@@ -42,23 +47,28 @@ class MapaFragment : Fragment(), OnMapReadyCallback {
         mMapView.getMapAsync(this)
     }
 
+    @SuppressLint("MissingPermission")
     override fun onMapReady(p0: GoogleMap) {
         googleMap1 = p0
 
         with(p0) {
-            this.addMarker(
-                MarkerOptions()
-                    .position(LatLng(-16.4138316, -71.5489517))
-                    .title("N1")
-            )
+
+            isMyLocationEnabled = true
+            StaticObjects.alertas.forEach {
+                this.addMarker(
+                    MarkerOptions()
+                        .position(LatLng(it.ubicacion.lat, it.ubicacion.lng))
+                        .title(it.titulo)
+                )
+            }
 
             mMapView.onResume()
-            val t = googleMap1.addMarker(
-                MarkerOptions()
-                    .position(
-                        LatLng(-16.4007783, -71.5354114)
-                    ).title("N2")
-            )
+//            val t = googleMap1.addMarker(
+//                MarkerOptions()
+//                    .position(
+//                        LatLng(-16.4007783, -71.5354114)
+//                    ).title("N2")
+//            )
             googleMap1.moveCamera(
                 com.google.android.gms.maps.CameraUpdateFactory.newLatLngZoom(
                     LatLng(

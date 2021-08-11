@@ -29,7 +29,7 @@ class ListaFragment : Fragment() {
         val layoutManagerAdapter = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         val adapter = SupervisadoAdapter(requireContext())
         listaSupervisados.layoutManager = layoutManagerAdapter
-        adapter.setIncidencias(arrayListOf("Nombre 1","Nombre 2 ", "Nombre 3"))
+        adapter.setIncidencias(arrayListOf("Supervisado 1","Supervisado 2 ", "Supervisado 3"))
         listaSupervisados.adapter = adapter
     }
 

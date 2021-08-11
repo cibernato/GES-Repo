@@ -41,6 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:visibility="invisible"
         android:text="Ver"
         app:layout_constraintBottom_toBottomOf="@+id/fechaEvento"
         app:layout_constraintEnd_toEndOf="parent"

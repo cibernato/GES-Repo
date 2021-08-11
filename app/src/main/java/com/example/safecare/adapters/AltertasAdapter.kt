@@ -6,17 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.safecare.R
+import com.example.safecare.dtos.AlertaDto
 import kotlinx.android.synthetic.main.alerta_item_layout.view.*
 
 class AltertasAdapter(
     private val context: Context
 ) : RecyclerView.Adapter<AltertasAdapter.AlertaViewHolder>() {
 
-    private val listaImagenesComprobante: ArrayList<String> = arrayListOf()
+    private val listaImagenesComprobante: ArrayList<AlertaDto> = arrayListOf()
 
     inner class AlertaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun setData(imagen: String, position: Int) {
-            itemView.fechaEvento.text = imagen
+        fun setData(imagen: AlertaDto, position: Int) {
+            itemView.fechaEvento.text = imagen.fecha.toLocaleString()
+            itemView.textView8.text = imagen.text
         }
     }
 
@@ -34,7 +36,7 @@ class AltertasAdapter(
         return listaImagenesComprobante.size
     }
 
-    fun setIncidencias(incidenciasList: List<String>) {
+    fun setIncidencias(incidenciasList: List<AlertaDto>) {
         this.listaImagenesComprobante.clear()
         this.listaImagenesComprobante.addAll(incidenciasList)
         notifyDataSetChanged()

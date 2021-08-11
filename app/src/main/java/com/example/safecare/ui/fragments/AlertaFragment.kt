@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.safecare.R
+import com.example.safecare.StaticObjects
 import com.example.safecare.adapters.AltertasAdapter
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import java.time.LocalDate
@@ -29,23 +30,14 @@ class AlertaFragment : Fragment() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val fechas = arrayListOf<String>()
-        var today: LocalDate = LocalDate.now()
-        fechas.add(today.format(DateTimeFormatter.ofPattern("dd-MMM-yy")))
-
-        for (i in 0..10) {
-            today = today.plusDays(i.toLong())
-            fechas.add(today.format(DateTimeFormatter.ofPattern("dd-MMM-yy")))
-        }
 
 
         super.onViewCreated(view, savedInstanceState)
         val adapter = AltertasAdapter(requireContext())
         val layoutManagerAdapter = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         alertasList.layoutManager = layoutManagerAdapter
-        adapter.setIncidencias(fechas)
+        adapter.setIncidencias(StaticObjects.alertas)
         alertasList.adapter = adapter
-        alertasList.adapter!!.notifyDataSetChanged()
         Log.e("asd", "${alertasList.adapter?.itemCount}")
 //        super.onViewCreated(view, savedInstanceState)
     }

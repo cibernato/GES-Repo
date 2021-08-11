@@ -20,7 +20,10 @@ import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.example.safecare.StaticObjects
+import com.example.safecare.dtos.AlertaDto
+import com.google.maps.model.LatLng
 import java.util.*
+import kotlin.math.sqrt
 
 class IService2 : Service(), SensorEventListener {
     var handler = Handler(Looper.getMainLooper())
@@ -370,52 +373,43 @@ class IService2 : Service(), SensorEventListener {
 
             //**********Sensing Danger**********
             val SMV =
-                Math.sqrt((accel[0] * accel[0] + accel[1] * accel[1] + accel[2] * accel[2]).toDouble())
-            //                Log.d("SMV:", ""+SMV);
-            if (SMV > 25) {
+                sqrt((accel[0] * accel[0] + accel[1] * accel[1] + accel[2] * accel[2]).toDouble())
+//                            Log.d("SMV:", ""+SMV);
+            if (SMV > 15) {
                 if (sentRecently == 'N') {
-                    Log.d("Accelerometer vector:", "" + SMV)
+//                    Log.d("Accelerometer vector:", "" + SMV)
                     var degreeFloat = (fusedOrientation[1] * 180 / Math.PI).toFloat()
                     var degreeFloat2 = (fusedOrientation[2] * 180 / Math.PI).toFloat()
-                    if (degreeFloat < 0) degreeFloat = degreeFloat * -1
-                    if (degreeFloat2 < 0) degreeFloat2 = degreeFloat2 * -1
-                    //                    Log.d("Degrees:", "" + degreeFloat);
+                    if (degreeFloat < 0) degreeFloat *= -1
+                    if (degreeFloat2 < 0) degreeFloat2 *= -1
+//                                        Log.e("Degrees:", "$degreeFloat $degreeFloat2");
                     if (degreeFloat > 30 || degreeFloat2 > 30) {
                         Log.d("Degree1:", "" + degreeFloat)
                         Log.d("Degree2:", "" + degreeFloat2)
                         handler.post {
                             Toast.makeText(
                                 this@IService2.applicationContext,
-                                "Sensed Danger! Sending SMS",
+                                "Peligro detectado! Enviando SMS",
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
-                        //                    Toast.makeText(getApplicationContext(), "Sensed Danger! Sending SMS", Toast.LENGTH_SHORT).show();
-//                        val itemIds = ArrayList<String>()
-//                        itemIds.add("991199370")
-//                        itemIds.add("994833351")
-//                        itemIds.add("991199370")
-//                        itemIds.add("994833351")
                         for (itemId in StaticObjects.telefonos) {
-//                        if (sendCount < 5) {
-//                                textMsg = "Sensed Danger here => "+"http://maps.google.com/?q=<"+latitude+">,<"+longitude+">";
                             phoneNum = itemId
                             if (phoneNum != prevNumber && phoneNum != null) {
                                 textMsg =
                                     "Lugar del suceso: \n https://www.google.com/maps/@$latitude,$longitude,14z"
-//                                    "Sensed Danger here => http://maps.google.com/?q=<$latitude>,<$longitude>"
                                 Log.d("Sending-MSG", "onSensorChanged: $sendCount")
                                 smsManager.sendTextMessage(phoneNum, null, textMsg, null, null)
                                 prevNumber = phoneNum
                                 sendCount++
                             }
-                            //                        }
                         }
+                        StaticObjects.alertas.add(AlertaDto(LatLng(latitude,longitude),"Se registro un incidente","E${StaticObjects.alertas.size+1}"))
                     } else {
                         handler.post {
                             Toast.makeText(
                                 this@IService2.applicationContext,
-                                "Sudden Movement! But looks safe",
+                                "Movimiento brusco! Todo normal",
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
